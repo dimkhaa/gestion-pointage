@@ -1,0 +1,12 @@
+{
+    "name": "ttree/gulpfilejs",
+    "type": "neos-build",
+    "description": "Gulpfile.js tailored to Flow Framework and Neos CMS project",
+    "license": ["MIT"],
+    "require": {
+        "neos/composer-plugin": "^1.0.6|^2.0.0"
+    },
+    "extra": {
+        "installer-name": "Gulp"
+    }
+}

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "66ca7343889332c2b8ecca11c251430c",
+    "content-hash": "7a23e5af5df4782c3b05b58cf917dae2",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1179,6 +1179,39 @@
                 "psr-3"
             ],
             "time": "2018-11-05T09:00:11+00:00"
+        },
+        {
+            "name": "neos/composer-plugin",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/neos/composer-plugin.git",
+                "reference": "cd20e3c9b548127f4fa1e0f31662072bf82250d4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/neos/composer-plugin/zipball/cd20e3c9b548127f4fa1e0f31662072bf82250d4",
+                "reference": "cd20e3c9b548127f4fa1e0f31662072bf82250d4",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0.0"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Neos\\ComposerPlugin\\Plugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "Neos\\ComposerPlugin\\": "Classes"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Flow Composer Plugin",
+            "time": "2016-05-05T07:03:52+00:00"
         },
         {
             "name": "nesbot/carbon",
@@ -3053,6 +3086,34 @@
             "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",
             "homepage": "https://github.com/tijsverkoyen/CssToInlineStyles",
             "time": "2017-11-27T11:13:29+00:00"
+        },
+        {
+            "name": "ttree/gulpfilejs",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ttreeagency/Gulpfile.js.git",
+                "reference": "c5da398f22d4106db7f76f7e3bae2e2738a3b147"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ttreeagency/Gulpfile.js/zipball/c5da398f22d4106db7f76f7e3bae2e2738a3b147",
+                "reference": "c5da398f22d4106db7f76f7e3bae2e2738a3b147",
+                "shasum": ""
+            },
+            "require": {
+                "neos/composer-plugin": "^1.0.6|^2.0.0"
+            },
+            "type": "neos-build",
+            "extra": {
+                "installer-name": "Gulp"
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Gulpfile.js tailored to Flow Framework and Neos CMS project",
+            "time": "2018-08-31T15:44:21+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
