@@ -17,13 +17,12 @@ $factory->define(App\User::class, function (Faker $faker) {
     return [
         'nom' => $faker->firstNameMale($gender=null),
         'prenom' => $faker->lastName,
-        'dateNaisse' => $faker->date($format = 'dd-mm-YYYY', $max = '01-01-2000'),
+        'dateNaisse' => $faker->date($format = 'Y-m-d', $max = '01-01-2000'),
         'sexe' => 'male',
         'role' => 0,
         'email' => $faker->unique()->safeEmail,
         'password' => bcrypt('123456'), 
         'service_id' => $faker->numberBetween(1,20),
-        'horaire_id' => $faker->numberBetween(1,2),
-        'remember_token' => str_random(10),
-    ];
+        'horaire_id' => $faker->numberBetween(1,2)
+        ];
 });

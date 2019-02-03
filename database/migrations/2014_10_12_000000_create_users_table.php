@@ -17,9 +17,9 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('nom');
             $table->string('prenom');
-            $table->Date('dateNaisse');
+            $table->DateTime('dateNaisse');
             $table->string('sexe');
-            $table->string('status');
+            $table->string('status')-> nullable();
             $table->string('role');
             $table->integer('service_id')->unsigned();
             $table->integer('horaire_id')->unsigned();
@@ -28,8 +28,6 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-
-            
         });
     }
 

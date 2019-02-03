@@ -15,11 +15,12 @@ class CreateMigrationPointage extends Migration
     {
         Schema::create('pointages', function (Blueprint $table) {
             $table->increments('id');
-            $table->DATETIME('date');
+            $table->DateTime('date');
             $table->string('type');
             $table->integer('users_id')->unsigned();
             $table->timestamps();
-            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('users_id')->references('id')
+                  ->on('users')->onDelete('cascade');
         });
     }
 
