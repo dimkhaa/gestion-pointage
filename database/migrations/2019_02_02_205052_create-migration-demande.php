@@ -15,7 +15,15 @@ class CreateMigrationDemande extends Migration
     {
         Schema::create('demandes', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('motif', 45);
+            $table->Datetime('date_heure_debut');
+            $table->Datetime('date_heure_fin');
+            $table->string('status', 45);
+            $table->string('typeDemande', 45);
+            $table->integer('users_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('users_id')->references('id')->on('users');
         });
     }
 

@@ -15,6 +15,8 @@ class CreateMigrationHoraire extends Migration
     {
         Schema::create('horaires', function (Blueprint $table) {
             $table->increments('id');
+            $table->DATETIME('heureDebut');
+            $table->DATETIME('heureFin');
             $table->timestamps();
         });
     }

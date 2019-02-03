@@ -15,7 +15,13 @@ class CreateMigrationService extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('libelleService');
+            $table->integer('entreprise_id')->unsigned();
             $table->timestamps();
+
+             $table->foreign('entreprise_id')->references('id')->on('entreprises');
+
+            
         });
     }
 
