@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('nom');
             $table->string('prenom');
-            $table->string('dateNaisse');
+            $table->Date('dateNaisse');
             $table->string('sexe');
             $table->string('status');
             $table->string('role');

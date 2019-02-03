@@ -17,9 +17,9 @@ class CreateMigrationService extends Migration
             $table->increments('id');
             $table->string('libelleService');
             $table->integer('entreprise_id')->unsigned();
-            $table->timestamps();
+             $table->foreign('entreprise_id')->references('id')->on('entreprises')->onDelete('cascade');
+             $table->timestamps();
 
-             $table->foreign('entreprise_id')->references('id')->on('entreprises');
 
             
         });

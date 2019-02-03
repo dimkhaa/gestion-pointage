@@ -19,10 +19,7 @@ class CreateMigrationPointage extends Migration
             $table->string('type');
             $table->integer('users_id')->unsigned();
             $table->timestamps();
-
-
-            
-               $table->foreign('users_id')->references('id')->on('users');
+            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
