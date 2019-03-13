@@ -19,9 +19,6 @@ class CreateMigrationService extends Migration
             $table->integer('entreprise_id')->unsigned();
             $table->foreign('entreprise_id')->references('id')->on('entreprises')->onDelete('cascade');
             $table->timestamps();
-
-
-            
         });
     }
 

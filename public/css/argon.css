@@ -790,10 +790,8 @@ pre code
 .row
 {
     display: flex;
-
     margin-right: -15px;
-    margin-left: -15px; 
-
+    margin-left: -15px;
     flex-wrap: wrap;
 }
 
@@ -1920,7 +1918,7 @@ pre code
 .table th,
 .table td
 {
-    padding: 1rem;
+    padding: 0.5rem;
 
     vertical-align: top;
 
@@ -5754,6 +5752,10 @@ input[type='button'].btn-block
 .card-link + .card-link
 {
     margin-left: 1.5rem;
+}
+
+.card-header>h3
+{
 }
 
 .card-header
@@ -16660,8 +16662,8 @@ a.text-lighter:focus
 
     display: inline-flex;
 
-    width: 48px; 
-    height: 48px;
+    width: 38px; 
+    height: 38px;
 
     color: #fff;
     border-radius: 50%;
@@ -20879,7 +20881,7 @@ textarea[resize='horizontal']
 
 .table td .progress
 {
-    width: 120px;
+    width: 100px;
     height: 3px;
     margin: 0;
 }

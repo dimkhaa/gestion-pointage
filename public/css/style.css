@@ -1,0 +1,18 @@
+.trSurvoler{
+    background-color: #f8f9fe;
+    cursor: pointer;
+}
+
+
+@media (min-width: 1200px){
+    .div-border{
+        border-right:1px solid rgba(0, 0, 0, .05)
+    }
+}
+
+@media (max-width: 1200px){
+    .div-border{
+        border-bottom:1px solid rgba(0, 0, 0, .05)
+    }
+}
+

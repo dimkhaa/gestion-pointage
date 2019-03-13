@@ -12,6 +12,7 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
   <!-- Icons -->
+  <link href="/css/style.css" rel="stylesheet">
   <link href="/js/vendor/nucleo/css/nucleo.css" rel="stylesheet">
   <link href="/js/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
   <!-- Argon CSS -->
@@ -23,8 +24,7 @@
   <!-- Main content -->
   <div class="main-content">
     @include('partials.topbar')
-    @include('partials.header-dashboard')  
-
+    @include('partials.header')  
     <!-- Page content -->
       @yield('content')
       @include('partials.footer')
@@ -37,8 +37,40 @@
   <!-- Optional JS -->
   <script src="/js/vendor/chart.js/dist/Chart.min.js"></script>
   <script src="/js/vendor/chart.js/dist/Chart.extension.js"></script>
-  <!-- Argon JS -->
+  <!-- DatePicker -->
+ <script src="/js/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+   <!-- Argon JS -->
   <script src="/js/argon.js?v=1.0.0"></script>
+   <script type="text/javascript">
+    $(document).ready(function(){
+      // Pour la page presences-details permettre 
+      // de cliquer sur un salarie et voir ces infos
+      $("tr.table-tr").each(function(){
+        var path=window.location.pathname; var lien=$(this).attr("data-url");
+        var pathTab=path.split('/'); var lienTab=lien.split('/');
+        var pathId=pathTab[pathTab.length-1]; var lienId=lienTab[lienTab.length-1];
+        if(pathId===lienId){
+          $(this).addClass("trSurvoler");
+        }
+      });
+
+      // Quand on survole une ligne changer la couleur 
+      $("tr.table-tr").on('click',function() {
+        window.location.href = $(this).attr("data-url");
+      });
+      $("tr.table-tr").on('mouseenter',function() {
+        $(this).addClass("trSurvoler");
+      });
+      $("tr.table-tr").on('mouseleave',function() {
+        var path=window.location.pathname; var lien=$(this).attr("data-url");
+        var pathTab=path.split('/'); var lienTab=lien.split('/');
+        var pathId=pathTab[pathTab.length-1]; var lienId=lienTab[lienTab.length-1];
+        if(pathId!=lienId){
+          $(this).removeClass("trSurvoler");
+        }
+      }); 
+    });
+</script>
 </body>
 
 </html>

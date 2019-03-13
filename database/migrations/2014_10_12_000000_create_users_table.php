@@ -19,16 +19,16 @@ class CreateUsersTable extends Migration
             $table->string('prenom');
             $table->DateTime('dateNaisse');
             $table->string('sexe');
-            $table->string('status')-> nullable();
+            $table->string('status')->nullable();
             $table->string('role');
+            $table->string('email')->unique();
+            $table->string('password');
             $table->integer('service_id')->unsigned();
             $table->integer('horaire_id')->unsigned();
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });
+
     }
 
     /**

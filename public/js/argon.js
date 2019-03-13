@@ -34,12 +34,14 @@ var Datepicker = (function() {
 	function init($this) {
 		var options = {
 			disableTouchKeyboard: true,
-			autoclose: false
+			autoclose: true,
+			format: 'dd M yyyy',
+			weekStart: 1,
+			endDate:new Date()
 		};
 
 		$this.datepicker(options);
 	}
-
 
 	// Events
 

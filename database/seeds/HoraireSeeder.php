@@ -11,6 +11,6 @@ class HoraireSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Horaire::class,1)->create();
+        factory(App\Horaire::class,2)->create();
     }
 }
