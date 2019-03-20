@@ -1,11 +1,16 @@
 <?php
 
     namespace App\Http\Controllers;
-
+    use App\ExportExcel;
     use Request;
     use App\Repository\TempsPresencesRepository;
     use Illuminate\Support\Facades\Input;
     use DateTime;
+    use Excel;
+    use PDF;
+    use App\User;
+    use Illuminate\Contracts\View\View;
+
     class TempsPresenceControlller extends Controller
     {
         private $repository;
@@ -15,9 +20,9 @@
             setlocale( LC_ALL, 'en_US');
         }
         public function showAll(){
-           
             $date_start = strftime("%d %b %Y",strtotime("-10 month"));
-            $date_end = strftime("%d %b %Y",strtotime("0 month"));   
+            $date_end = strftime("%d %b %Y",strtotime("0 month"));  
+
             return view('temps-presences', [
                 'users' => $this->repository
                 ->usersFilterByDate($date_start, $date_end,5),
@@ -92,9 +97,14 @@
         }
         public function searchByName(){
             $mc = Request::get('mc');
+            $date_start = Request::get('date_start');
+            $date_end = Request::get('date_end');
             return view('temps-presences', [
-                'users' => $this->repository->usersSearchByName($mc,5),
-                'mc' =>$mc
+                'users' => $this->repository->
+                            usersSearchByName($mc,$date_start,$date_end,5),
+                'mc' =>$mc,
+                'date_start' =>$date_start,
+                'date_end'=>$date_end
             ]);
         }
         public function filterByDateDP($id){
@@ -110,5 +120,21 @@
                 'date_end'=>$date_end,
                 'users' => $this->repository->allUsers(5)
             ]);
+        }
+
+        public function exportUsers(Request $request){
+            $type=Input::post('file_type');
+            $date_start=Input::post('date_start');
+            $date_end=Input::post('date_end');
+            if($type==="pdf"){
+                $users= $this->repository->usersExportByDate($date_start, $date_end, 5);
+                $pdf = PDF::loadView('generatePdf', compact('users'));
+                return $pdf->download('liste_users_du_'.$date_start.'_au_'.$date_end.'.pdf');
+            }else{
+                //return $this->viewExcel($date_start, $date_end);
+                return Excel::download(new ExportExcel($this->repository,
+                                                      $date_start, $date_end),
+                                                     'liste_users_du_'.$date_start.'_au_'.$date_end.'.xlsx');
+            }            
         }
     }

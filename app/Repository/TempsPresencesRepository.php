@@ -23,7 +23,8 @@
             })->whereHas('pointages', function($q) use ($d1, $d2)
             {
                 $q->where("date", ">=", $d1);
-                $q->where("date", "<=", $d2);      
+                $q->where("date", "<=", $d2);    
+
             })->paginate(10);
              
             return $users;
@@ -38,13 +39,35 @@
             return $user;
         }
 
-        public function usersSearchByName($name,$id_entrep){
+        public function usersSearchByName($name, $date_start, $date_end, $id_entrep){
+            $d1=date("Y-m-d", strtotime($date_start));
+            $d2=date("Y-m-d", strtotime($date_end));
+            $users= User::where('nom','LIKE', '%'.$name.'%')
+            ->whereHas('service', function($q) use ($id_entrep)
+            {
+               $q->where('entreprise_id',$id_entrep);
+            })->whereHas('pointages', function($qq) use ($d1, $d2)
+            {
+                $qq->where("date", ">=", $d1);
+                $qq->where("date", "<=", $d2);      
+
+            })->paginate(10);
+             
+            return $users;
+        }
+
+        public function usersExportByDate($date_start, $date_end, $id_entrep){
+            $d1=date("Y-m-d", strtotime($date_start));
+            $d2=date("Y-m-d", strtotime($date_end));
             $users= User::whereHas('service', function($q) use ($id_entrep)
             {
                $q->where('entreprise_id',$id_entrep);
-            })->where('nom','LIKE', '%'.$name.'%')
-            ->orWhere('prenom','LIKE', '%'.$name.'%')
-            ->paginate(10);
+            })->whereHas('pointages', function($q) use ($d1, $d2)
+            {
+                $q->where("date", ">=", $d1);
+                $q->where("date", "<=", $d2);      
+            })->get();
+             
             return $users;
         }
         

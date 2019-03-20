@@ -2952,6 +2952,7 @@ textarea.form-control
 {
     cursor: pointer;
 }
+
 .btn:not(:disabled):not(.disabled):active,
 .btn:not(:disabled):not(.disabled).active
 {
@@ -21868,4 +21869,27 @@ html:not([dir='rtl']) .noUi-horizontal .noUi-handle
     bottom: 0; 
 
     height: 3px;
+}
+.btnExport
+{
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+
+    display: inline-block;
+
+    padding: .625rem 0.25rem;
+
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out; 
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+
+    border: 1px solid transparent;
+    border-radius: .375rem;
+    cursor: pointer;
 }
