@@ -16,10 +16,6 @@
   <link href="/js/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
   <!-- Argon CSS -->
   <link type="text/css" href="/css/argon.css?v=1.0.0" rel="stylesheet">
-<<<<<<< HEAD
-=======
-
->>>>>>> 6c4a08a1b8a4aa93faa2c3e3cd2dd3cd0d9b81da
 </head>
 
 <body>
@@ -27,11 +23,7 @@
   <!-- Main content -->
   <div class="main-content">
     @include('partials.topbar')
-<<<<<<< HEAD
     @include('partials.header-dashboard')  
-=======
-    @include('partials.header-dashboard')
->>>>>>> 6c4a08a1b8a4aa93faa2c3e3cd2dd3cd0d9b81da
 
     <!-- Page content -->
       @yield('content')

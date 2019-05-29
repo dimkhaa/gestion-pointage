@@ -11,7 +11,6 @@
 |
 */
 
-<<<<<<< HEAD
 Route::get('/', 'Controller@index')->name('index');
 Route::get('/temps-presences','TempsPresenceControlller@showAll')->name('temps-presences');
 Route::get('/temps-presences/filter','TempsPresenceControlller@filterByDate')->name('filterByDate.temps-presences');
@@ -19,19 +18,6 @@ Route::get('/temps-presences/details/{id}','TempsPresenceControlller@getDetails'
 Route::get('/temps-presences/search','TempsPresenceControlller@searchByName')->name('searchByName.temps-presences');
 Route::get('/temps-presences/details/filter/{id}','TempsPresenceControlller@filterByDateDP')->name('filterByDate.presences-details');
 Route::post('/temps-presences/export','TempsPresenceControlller@exportUsers')->name('temps-presences.export');
-=======
-Route::get('/', function () {
-    return view('welcome');
-});
-/*
-Route pour aller dans mes demandes #endregion
-*/
-
-/*
-Route::get('/demande', function () {
-    return view('demandes');
-});
-*/
 
 Route::get('/demandes', 'DemandesController@listDemandes');
 
@@ -43,13 +29,8 @@ Route::get('/demandes/refuser', 'DemandesController@listDemandeRefuser');
 
 Route::get('/demandes/attente', 'DemandesController@listDemandeEnAttente');
 
-
-
-
 //Route pour afficher une demande
 //Route::get('/voir', 'DemandesController@afficherDemande');
-
-
 
 Route::get('/demandes/voir{id}', [
     'as'=> 'afficherDemande',
@@ -68,5 +49,3 @@ Route::get('/demandes/voir{id}/refuser', [
     'as' => 'refuserDemande',
     'uses'=> 'DemandesController@refuserDemande'
 ]);
-
->>>>>>> 6c4a08a1b8a4aa93faa2c3e3cd2dd3cd0d9b81da
