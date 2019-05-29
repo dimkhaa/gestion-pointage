@@ -8,14 +8,15 @@
   <meta name="author" content="Creative Tim">
   <title>Argon Dashboard - Free Dashboard for Bootstrap 4</title>
   <!-- Favicon -->
-  <link href="./img/brand/favicon.png" rel="icon" type="image/png">
+  <link href="/img/brand/favicon.png" rel="icon" type="image/png">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
   <!-- Icons -->
-  <link href="./js/vendor/nucleo/css/nucleo.css" rel="stylesheet">
-  <link href="./js/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="/js/vendor/nucleo/css/nucleo.css" rel="stylesheet">
+  <link href="/js/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
   <!-- Argon CSS -->
-  <link type="text/css" href="./css/argon.css?v=1.0.0" rel="stylesheet">
+  <link type="text/css" href="/css/argon.css?v=1.0.0" rel="stylesheet">
+
 </head>
 
 <body>
@@ -23,7 +24,7 @@
   <!-- Main content -->
   <div class="main-content">
     @include('partials.topbar')
-    @include('partials.header-dashboard')   
+    @include('partials.header-dashboard')
 
     <!-- Page content -->
       @yield('content')
@@ -32,13 +33,18 @@
   </div>
   <!-- Argon Scripts -->
   <!-- Core -->
-  <script src="./js/vendor/jquery/dist/jquery.min.js"></script>
-  <script src="./js/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="/js/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Optional JS -->
-  <script src="./js/vendor/chart.js/dist/Chart.min.js"></script>
-  <script src="./js/vendor/chart.js/dist/Chart.extension.js"></script>
+  <script src="/js/vendor/chart.js/dist/Chart.min.js"></script>
+  <script src="/js/vendor/chart.js/dist/Chart.extension.js"></script>
+  <!-- Datepicker -->
+  <script src="/js/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+
   <!-- Argon JS -->
-  <script src="./js/argon.js?v=1.0.0"></script>
+  <script src="/js/argon.js?v=1.0.0"></script>
+
+
 </body>
 
 </html>

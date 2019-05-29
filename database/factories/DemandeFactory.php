@@ -9,6 +9,6 @@ $factory->define(App\Demande::class, function (Faker $faker) {
         'dateFin' => $faker->dateTime('15-01-2019 09:00:00') ,
         'status' => 0,
         'typeDemande' => 'Conge',
-        'users_id' =>  $faker->numberBetween(1,50)
+        'user_id' =>  $faker->numberBetween(1,50)
     ];
 });
