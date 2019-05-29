@@ -16,6 +16,10 @@
   <link href="/js/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
   <!-- Argon CSS -->
   <link type="text/css" href="/css/argon.css?v=1.0.0" rel="stylesheet">
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6c4a08a1b8a4aa93faa2c3e3cd2dd3cd0d9b81da
 </head>
 
 <body>
@@ -23,7 +27,11 @@
   <!-- Main content -->
   <div class="main-content">
     @include('partials.topbar')
+<<<<<<< HEAD
     @include('partials.header-dashboard')  
+=======
+    @include('partials.header-dashboard')
+>>>>>>> 6c4a08a1b8a4aa93faa2c3e3cd2dd3cd0d9b81da
 
     <!-- Page content -->
       @yield('content')
@@ -37,8 +45,18 @@
   <!-- Optional JS -->
   <script src="/js/vendor/chart.js/dist/Chart.min.js"></script>
   <script src="/js/vendor/chart.js/dist/Chart.extension.js"></script>
+<<<<<<< HEAD
   <!-- Argon JS -->
   <script src="/js/argon.js?v=1.0.0"></script>
+=======
+  <!-- Datepicker -->
+  <script src="/js/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+
+  <!-- Argon JS -->
+  <script src="/js/argon.js?v=1.0.0"></script>
+
+
+>>>>>>> 6c4a08a1b8a4aa93faa2c3e3cd2dd3cd0d9b81da
 </body>
 
 </html>

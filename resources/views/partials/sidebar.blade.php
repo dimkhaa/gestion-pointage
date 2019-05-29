@@ -124,6 +124,19 @@
               <i class="ni ni-circle-08 text-pink"></i> Register
             </a>
           </li>
+          <!-- Partri seydi mes demandes -->
+          <ul>
+            <li class="nav-item">
+                <a class="nav-link" href="/demandes">
+                    <i class="ni ni-bullet-list-67 text-red"></i> Mes Demandes
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/voir">
+                    <i class="ni ni-bullet-list-67 text-red"></i> Voir demande
+                </a>
+              </li>
+          </ul>
         </ul>
         <!-- Divider -->
         <hr class="my-3">
