@@ -1753,7 +1753,6 @@ pre code
     .col-xl-5
     {
         max-width: 41.66667%; 
-
         flex: 0 0 41.66667%;
     }
     .col-xl-6
@@ -3009,6 +3008,13 @@ fieldset:disabled a.btn
 {
     box-shadow: none, 0 0 0 0 rgba(94, 114, 228, .5);
 }
+.btn-secondarySearch
+{
+    color: #212529;
+    border-color: #f7fafc;
+    background-color: #f7fafc;
+
+}
 
 .btn-secondary
 {
@@ -3448,6 +3454,21 @@ fieldset:disabled a.btn
 .show > .btn-darker.dropdown-toggle:focus
 {
     box-shadow: none, 0 0 0 0 rgba(0, 0, 0, .5);
+}
+
+.btn-outline-primarySearch
+{
+    color: #97b3cc;
+    border: 1px solid #cad1d7; 
+    background-color: #f7fafc;
+    background-image: none;
+}
+.btn-outline-primarySearch:hover
+{
+    color: #5e72e4;
+    border: 1px solid #cad1d7; 
+    background-color: #f7fafc;
+    background-image: none;
 }
 
 .btn-outline-primary
@@ -16833,9 +16854,9 @@ a.text-lighter:focus
 .btn:hover
 {
     transform: translateY(-1px); 
-
-    box-shadow: 0 7px 14px rgba(50, 50, 93, .1), 0 3px 6px rgba(0, 0, 0, .08);
+   /* box-shadow: 0 7px 14px rgba(50, 50, 93, .1), 0 3px 6px rgba(0, 0, 0, .08); */
 }
+
 .btn:not(:last-child)
 {
     margin-right: .5rem;
@@ -18155,7 +18176,7 @@ textarea[resize='horizontal']
 }
 .has-danger .form-control:focus
 {
-    border-color: rgba(50, 151, 211, .25);
+    border-color: #3297d340
 }
 .has-danger .form-control:-ms-input-placeholder
 {

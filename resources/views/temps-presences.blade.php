@@ -29,6 +29,26 @@
                         <div class="input-daterange datepicker row align-items-center">
                           <div class="col-xl-12">
                               <div class="form-group">
+                                <label for="service">Service</label>
+                                <select name="service" id="service" class="form-control">
+                                  <option value="0">Tout</option>
+                                    @foreach($services as $service)
+                                      @if(isset($service_courant) && $service_courant==$service->id)
+                                        <option value="{{ $service->id }}" selected>
+                                          {{ $service->libelleService }}
+                                        </option>
+                                      @endif
+                                      @if(!isset($service_courant))
+                                      <option value="{{ $service->id }}">
+                                        {{ $service->libelleService }}
+                                      </option>
+                                      @endif
+                                    @endforeach
+                                </select>
+                              </div>
+                          </div>
+                          <div class="col-xl-12">
+                              <div class="form-group">
                                 <div class="input-group input-group">
                                   <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
@@ -43,13 +63,14 @@
                                       <div class="input-group-prepend">
                                           <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                                       </div>
-                                      <input name="date_end" class="form-control datepicker" value="<?php if (isset($date_end)) echo $date_end ?>" placeholder=" Au" type="text">
+                                      <input name="date_end" class="form-control datepicker"
+                                       value="<?php if (isset($date_end)) echo $date_end ?>" placeholder=" Au" type="text">
                                   </div>
                               </div>
                           </div>
                           <div class="col-xl-2">
                               <div class="form-group">
-                                <button type="submit" class="btn btn-info">Filtrer</button>
+                                <button type="submit" class="btn btn-outline-primary">Filtrer</button>
                               </div>
                           </div>
                         </div>
@@ -59,21 +80,23 @@
                 </div>
                 <div class="col-xl-9">
                   <form action="{{ route('searchByName.temps-presences') }}" method="get" role="search">
-                  {{ csrf_field() }}  
-                  <input name="date_start"  class="form-control datepicker"
+                    {{ csrf_field() }}  
+                    <input name="date_start"  class="form-control datepicker"
                          value="<?php if (isset($date_start)) echo $date_start ?>" placeholder=" Du" type="hidden">
-                  <input name="date_end" class="form-control datepicker" 
+                    <input name="date_end" class="form-control datepicker" 
                          value="<?php if (isset($date_end)) echo $date_end ?>" placeholder=" Au" type="hidden">
-                  <div class="row">
-                      <div class="col-md-9">
+                    <div class="row">
+                      <div class="col-md-8">
                         <div class="form-group">
                           <div class="input-group mb-4">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
-                            </div>
-                            <input name="mc" class="form-control" value="<?php if (isset($mc)) echo $mc ?>" placeholder="Rechercher un salarié" type="text">
+                            <input name="mc" class="form-control" 
+                             value="<?php if (isset($mc)) echo $mc ?>" placeholder="Rechercher un salarié" type="text">
                               <span class="input-group-prepend">
-                                <button id="btnsearch" type="submit" class="btn btn-info">Rechercher</button>
+                                <button id="btnsearch" type="submit" data-toggle="tooltip" 
+                                  data-placement="bottom" title="Rechercher"
+                                 class="btn btn-outline-primarySearch" >
+                                 <i class="fas fa-search"></i>
+                                </button>
                               </span>
                           </div>
                         </div>
@@ -98,9 +121,11 @@
                           <?php
                             $url= route('temps-presences.details',$user->id).
                             '?date_start='.$date_start .'&'.
-                            'date_end='.$date_end ;
+                            'date_end='.$date_end;
+                            if(isset($service_courant)){
+                              $url=$url.'&'.'service='.$service_courant;                            
+                            }
                           ?>
-
                           <tr class="table-tr" data-url="{{ $url }} ">
                             <th scope="row">
                               <div class="media align-items-center">

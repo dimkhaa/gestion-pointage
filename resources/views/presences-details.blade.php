@@ -22,12 +22,15 @@
                                             <th scope="col">Salariés</th>
                                         </tr>
                                     </thead>
-                                    <tbody>    
+                                    <tbody style="background-color:#f8f9fe">    
                                         @foreach( $users as $u)
                                             <?php
                                                 $url= route('temps-presences.details',$u->id).
                                                 '?date_start='.$date_start .'&'.
-                                                'date_end='.$date_end ;
+                                                'date_end='.$date_end;
+                                                if(isset($service_courant)){
+                                                    $url=$url.'&'.'service='.$service_courant;                            
+                                                  }
                                             ?>
 
                                             <tr class="table-tr" data-url="{{ $url }}">
@@ -71,15 +74,15 @@
                                 <div class="input-daterange datepicker row align-items-center">
                                 <div class="col-xl-5">
                                     <div class="form-group">
-                                        <div class="input-group input-group">
+                                        <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                                             </div>
-                                            <input name="date_start" class="form-control datepicker" value="<?php if (isset($date_start)) echo $date_start ?>" placeholder=" Du" type="text">
+                                            <input  name="date_start" class="form-control datepicker" value="<?php if (isset($date_start)) echo $date_start ?>" placeholder=" Du" type="text">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-5">
+                                <div class="col-xl-5" >
                                     <div class="form-group">
                                         <div class="input-group ">
                                             <div class="input-group-prepend">
@@ -91,7 +94,7 @@
                                 </div>
                                 <div class="col-xl-2">
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-info">Filtrer</button>
+                                        <button type="submit" class="btn btn-outline-primarySearch">Filtrer</button>
                                     </div>
                                 </div>
                                 </div>
@@ -162,21 +165,33 @@
                                                                 <?php 
                                                                     $dateArr = (new DateTime($pointage->date))->format("H:i:s");
                                                                     $dateSort = (new DateTime($point->date))->format("H:i:s");
-                                                                    $heurTot= abs(strtotime($dateSort) - strtotime($dateArr))/3600;
+                                                                    $heurTot= (strtotime($dateSort) - strtotime($dateArr));
                                                                     $totaux+=$heurTot;
+                                                                    if((strtotime($dateArr) - strtotime($user->horaire->heureDebut)) >= 900){
+                                                                        $classEtatArr="bg-warning";
+                                                                    }else{
+                                                                        $classEtatArr="bg-success";
+                                                                    }
+                                                                    if((strtotime($user->horaire->heureFin) - strtotime($dateSort)) >= 900){
+                                                                        $classEtatSort="bg-warning";
+                                                                    }else{
+                                                                        $classEtatSort="bg-success";
+                                                                    }
                                                                 ?>
                                                               
-                                                                <span class="badge badge-dot mr-4">
+                                                              <span class="badge badge-dot mr-4">
+                                                                    <i class="{{$classEtatArr}}"></i>
                                                                     {{ $dateArr }}
                                                                 </span> 
                                                             </td>
-                                                            <td>
+                                                            <td>                                                            
                                                                 <span class="badge badge-dot mr-4">
+                                                                    <i class="{{$classEtatSort}}"></i>
                                                                     {{ $dateSort }}
                                                                 </span>    
                                                             </td>
                                                             <td>
-                                                                {{ round($heurTot) }}
+                                                                {{ Date('H:i',$heurTot) }}
                                                             </td>
                                                         </tr>
                                                     @endif
@@ -199,20 +214,32 @@
                                                                 <?php 
                                                                     $dateArr = (new DateTime($pointage->date))->format("H:i:s");
                                                                     $dateSort = (new DateTime($point->date))->format("H:i:s");
-                                                                    $heurTot= abs(strtotime($dateSort) - strtotime($dateArr))/3600;
+                                                                    $heurTot= (strtotime($dateSort) - strtotime($dateArr));
                                                                     $totaux+=$heurTot;
+                                                                    if((strtotime($dateArr) - strtotime($user->horaire->heureDebut)) >= 900){
+                                                                        $classEtatArr="bg-warning";
+                                                                    }else{
+                                                                        $classEtatArr="bg-success";
+                                                                    }
+                                                                    if((strtotime($user->horaire->heureFin) - strtotime($dateSort)) >= 900){
+                                                                        $classEtatSort="bg-warning";
+                                                                    }else{
+                                                                        $classEtatSort="bg-success";
+                                                                    }
                                                                 ?>
                                                                 <span class="badge badge-dot mr-4">
+                                                                    <i class="{{$classEtatArr}}"></i>
                                                                     {{ $dateArr }}
                                                                 </span> 
                                                             </td>
-                                                            <td>
+                                                            <td>                                                            
                                                                 <span class="badge badge-dot mr-4">
+                                                                    <i class="{{$classEtatSort}}"></i>
                                                                     {{ $dateSort }}
                                                                 </span>    
                                                             </td>
                                                             <td>
-                                                                {{ round($heurTot) }}
+                                                                {{ Date('H:i',$heurTot) }}
                                                             </td>
                                                         </tr>
                                                     @endif
@@ -225,7 +252,7 @@
                                             <td></td>
                                             <td></td>
                                             <th scope="row">TOTAL</th>
-                                            <td>{{ round($totaux) }}</td>
+                                            <td>{{ Date('H:i',$totaux) }}</td>
                                         </tr>
                                     </tbody>
                                 </table>

@@ -2,6 +2,15 @@
     background-color: #f8f9fe;
     cursor: pointer;
 }
+.trUserRacc{
+    background-color: #fff;
+    cursor: pointer;
+}
+.desactiveClick{
+    pointer-events: none;
+    cursor: default;
+}
+
 
 
 @media (min-width: 1200px){
