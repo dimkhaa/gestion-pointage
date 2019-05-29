@@ -1,21 +1,10 @@
 
 
-      @extends("master")
+@extends("master2")
 
 @section("content")
 <div class="container-fluid mt--7">
-    {{-- <div class="row">
-        <div class="col-xl-8 mb-5 mb-xl-0">
-          <div class="card bg-gradient-default shadow">
-            <div class="card-header bg-transparent">
-
-            </div>
-
-          </div>
-        </div>
-
-     </div> --}}
-    <div class="row mt-5">
+    <div class="row">
         <div class="col-xl-12 mb-5 mb-xl-0">
           <div class="card shadow">
             <div class="card-header border-0">
@@ -24,8 +13,13 @@
                     @if ($demande)
 
                   <div class="card-header">
-                        {{-- <button type="button" class="btn btn-primary btn-sm align-content-end">Small button</button> --}}
-                        <a href="/demandes" class="btn btn-danger btn-sm align-content-end" role="button" aria-pressed="true">Retour </a>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                              <a class="nav-link" href="/demandes">
+                                <i class="ni ni-bold-left text-blue"></i>Retour
+                              </a>
+                            </li>
+                        </ul>
                         <h1>Demande de congé </h1>
                     </div>
                     <div class="card-body">
@@ -103,24 +97,11 @@
                                 </div>
                         </div> --}}
                     </div>
-
-
-                    <p></p>
-
-
-
-
-
                    @endif
               </div>
-
-
             </div>
-
           </div>
         </div>
-
-
     </div>
-</div>
+
 @endsection

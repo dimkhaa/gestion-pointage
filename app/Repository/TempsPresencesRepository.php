@@ -9,7 +9,7 @@
         public function __construct(){
         }
         public function allUsers($id_entrep){
-            $users= User::whereHas('service', function($q) use ($id_entrep)
+            $users = User::whereHas('service', function($q) use ($id_entrep)
             {
                 $q->where('entreprise_id',$id_entrep);
             })->paginate(10);

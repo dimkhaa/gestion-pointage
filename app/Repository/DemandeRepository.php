@@ -8,21 +8,28 @@ use Illuminate\Support\Facades\DB;
 //use App\Entreprise;
 
 class DemandeRepository {
-    protected $demandes;
 
-   public function __construct(Demande $demandes, User $users)
+   public function __construct()
     {
-        $this->Demande = $demandes;
-        $this->User = $users;
+  
     }
 
       public function getAllDemande(){
-          //$entreprise = Entreprise ::find(1);
-          $demandes = Demande::paginate(10);
-      //  $demandes = DB:: table('demandes');
+      //     //$entreprise = Entreprise ::find(1);
+      //     $demandes = Demande::paginate(10);
+      // //  $demandes = DB:: table('demandes');
+      //   return $demandes;
+        $id_entrep=5;
+        $demandes= Demande::whereHas('user', function($q) use ($id_entrep)
+        {
+           $q->whereHas('service', function($q) use ($id_entrep)
+           {
+               $q->where("entreprise_id", $id_entrep);   
+           });
+        })->paginate(10);
         return $demandes;
+    }
 
-      }
        //Fonction qui permet d'afficher une demande
        public function showDemande($id){
            $demandes = Demande::where('id',$id)->first();
@@ -115,7 +122,7 @@ class DemandeRepository {
               $demande->status = -1;
         }
 
-       return $demande->save($demande);
+        return $demande->save($demande);
 
        }
 

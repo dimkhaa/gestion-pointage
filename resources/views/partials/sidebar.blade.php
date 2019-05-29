@@ -95,48 +95,16 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./examples/icons.html">
-              <i class="ni ni-planet text-blue"></i> Icons
-            </a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="{{route('temps-presences')}}">
               <i class="ni ni-calendar-grid-58 text-blue"></i> Temps et Présences
             </a>
           </li>
+          <!-- Partie seydi mes demandes -->
           <li class="nav-item">
-            <a class="nav-link" href="./examples/profile.html">
-              <i class="ni ni-single-02 text-yellow"></i> User profile
+            <a class="nav-link" href="/demandes">
+              <i class="ni ni-bullet-list-67 text-red"></i> Mes Demandes
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./examples/tables.html">
-              <i class="ni ni-bullet-list-67 text-red"></i> Tables
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./examples/login.html">
-              <i class="ni ni-key-25 text-info"></i> Login
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./examples/register.html">
-              <i class="ni ni-circle-08 text-pink"></i> Register
-            </a>
-          </li>
-          <!-- Partri seydi mes demandes -->
-          <ul>
-            <li class="nav-item">
-                <a class="nav-link" href="/demandes">
-                    <i class="ni ni-bullet-list-67 text-red"></i> Mes Demandes
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/voir">
-                    <i class="ni ni-bullet-list-67 text-red"></i> Voir demande
-                </a>
-              </li>
-          </ul>
         </ul>
         <!-- Divider -->
         <hr class="my-3">
