@@ -10,12 +10,22 @@
         <div class="row">
             <div class="col">
                 <div class="card-header">
-                    
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{route('temps-presences')}}">
+                                        <i class="ni ni-bold-left text-blue"></i>Retour
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-xl-3 mb-4 div-border">
-                            <div class="table-responsive mb-4 ">
+                            <div class="table-responsive mb-4">
                                 <table id="table-temps-presence" class="table table-bordered align-items-center  containe" >
                                     <thead >
                                         <tr>
@@ -61,14 +71,7 @@
                         </div>
 
                         <div class="col-xl-9 ">
-                            <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{route('temps-presences')}}">
-                                        <i class="ni ni-bold-left text-blue"></i>Retour
-                                    </a>
-                                </li>
-                            </ul>
-
+                        
                             <form autocomplete="off" action="{{ route('temps-presences.details', $user->id) }}" method="get" role="search">
                                 {{ csrf_field() }}
                                 <div class="input-daterange datepicker row align-items-center">
@@ -102,34 +105,36 @@
                             <h1>{{ $user->prenom }} {{ $user->nom }}</h1>
 
 
-                            <div class="table-responsive mb-4 " style="max-width:50%">
-                                <table id="table-temps-presence" class="table table-bordered  align-items-center  containe" >
-                                    <thead class="thead-light">
+                            <div class="table-responsive mb-4 " style="width:100%">
+                                <div class="col-xl-6" style="margin-left:-2%">
+                                    <table id="table-temps-presence" class="table table-bordered  align-items-center  containe" >
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col"></th>
+                                                <th scope="col">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody> 
+                
                                         <tr>
-                                            <th scope="col"></th>
-                                            <th scope="col">Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody> 
-             
-                                     <tr>
-                                            <td scope="row">Heures Planifiées</td>
-                                            <td>{{ round($heurePla/3600) }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td scope="row">
-                                                Heures Pointées
-                                            </td>
-                                            <td>{{ round($heurePo/3600) }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td scope="row">
-                                                Heures Supplémentaires
-                                            </td>
-                                            <td>{{ round($heureSuppl/3600) }} </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                                <td scope="row">Heures Planifiées</td>
+                                                <td>{{ round($heurePla/3600) }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">
+                                                    Heures Pointées
+                                                </td>
+                                                <td>{{ round($heurePo/3600) }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">
+                                                    Heures Supplémentaires
+                                                </td>
+                                                <td>{{ round($heureSuppl/3600) }} </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
 
                             <div class="table-responsive">

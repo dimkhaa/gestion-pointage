@@ -7,7 +7,7 @@ use  App\Repository\DemandeRepository;
 use App\Demande;
 use App\User;
 use Illuminate\Pagination\LengthAwarePaginator;
-
+use Illuminate\Support\Facades\Auth;
 
 class DemandesController extends Controller
 {
@@ -15,41 +15,28 @@ class DemandesController extends Controller
 
     public function __construct(DemandeRepository $demandeRepository)
     {
+        $this->middleware('auth');
         $this->demandeRepository = $demandeRepository;
     }
-
+    
+    //fonction afficher la liste des demandes
     public function listDemandes(){
         return view ('pages/demandes', [
-            'demandes' => $this->demandeRepository->getAllDemande()
+            'demandes' => $this->demandeRepository->getAllDemande(),
+            'userLogin'=>Auth::user()
         ]);
     }
 
-    // public function store(Request $request){
-    //     $demandes=$this->demandeRepository->saveDemande($request->all());
+    //fonction pour envoyer une nouvelle demande 
+    public function sendDemande( Request $request, $user_id){
 
-    //     return redirect('/demandes')->with('succes', 'donnes enregister');
-    // }
+        $demandes = new Demande ();
+        $user = new User();
 
-     public function sendDemande( Request $request, $user_id){
-
-        // validate($request, [
-        //     'dateDebut' => 'required',
-        //     'dateFin' => 'required',
-        //     'typeDemande' => 'required',
-        //     'motif' => 'required',
-
-        // ]);
-
-            $demandes = new Demande ();
-            $user = new User();
-            // if ($user_id) {
-            //     $demandes->user_id = $user_id;
-            // }
         $demandes->nom = $request->nom;
         $demandes->prenom = $request->prenom;
         $demandes->dateDebut = date('Y-m-d',strtotime($request->dateDebut));
         $demandes->dateFin = date('Y-m-d',strtotime($request->dateFin));
-       // $demandes->dateDebut = $inputs['status'];
         $demandes->typeDemande = $request->typeDemande;
         $demandes->motif = $request->motif;
 
@@ -57,60 +44,55 @@ class DemandesController extends Controller
 
         $this->demandeRepository->createDemande($demandes, $request->user()->user_id);
 
-         return redirect('/demandes')->with('succes', 'donnes enregister');
+        return redirect('/demandes')->with('succes', 'données enregistées');
     }
-
 
     //Afficher une demande
-
     public function afficherDemande( $id){
-           $demande = Demande::find($id);
-        return  view('pages/voirDemande')->with('demande', $demande);
+        $demande = Demande::find($id);
+        return  view('pages/voirDemande', [
+            'demande'=> $demande,
+            'userLogin'=>Auth::user()
+            ]);
     }
-    // public function send(Request $request){
-    //     $demandes = $this->demandeRepository->saveDemande($request->all());
-    // }
 
-
-    //fonction pour traitement de la  demande:approuvzr
+    //fonction pour traitement de la  demande:approuver
     public function approuverDemande($id){
+        return  view('pages/voirDemande', [
+            'demande' => $this->demandeRepository->approuverUneDemande($id),
+            'userLogin'=>Auth::user()
+        ]);
+    }
 
-     return  view('pages/voirDemande', [
-        'demande' => $this->demandeRepository->approuverUneDemande($id)
-
-     ]);
- }
-
- //fonction pour traitement de la  demande: refuser
- public function refuserDemande($id){
-
-    return  view('pages/voirDemande', [
-       'demande' => $this->demandeRepository->refuserUneDemande($id)
-
-    ]);
-}
-
-
+    //fonction pour traitement de la demande: refuser
+    public function refuserDemande($id){
+        return  view('pages/voirDemande', [
+        'demande' => $this->demandeRepository->refuserUneDemande($id),
+        'userLogin'=>Auth::user(),
+        ]);
+    }
 
     //Liste des demande approuvé
     public function listDemandeApprouve(){
         return view ('pages/demandes', [
-            'demandes' => $this->demandeRepository->demandeApprouve()
+            'demandes' => $this->demandeRepository->demandeApprouve(),
+            'userLogin'=>Auth::user()
         ]);
     }
+
     //Liste des demande Refusé
     public function listDemandeRefuser(){
         return view ('pages/demandes', [
-            'demandes' => $this->demandeRepository->demandeRefuser()
+            'demandes' => $this->demandeRepository->demandeRefuser(),
+            'userLogin'=>Auth::user()
         ]);
     }
+
     //Liste des demande en attende
     public function listDemandeEnAttente(){
         return view ('pages/demandes', [
-            'demandes' => $this->demandeRepository->demandeEnAttente()
+            'demandes' => $this->demandeRepository->demandeEnAttente(),
+            'userLogin'=>Auth::user()
         ]);
     }
-
-
-
 }

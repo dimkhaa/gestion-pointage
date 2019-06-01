@@ -117,7 +117,6 @@
                     <table class="table align-items-center table-flush">
                       <thead class="thead-light">
                         <tr>
-                          <th scope="col">ID</th>
                           <th scope="col">Salarié</th>
                           <th scope="col">Date de Départ</th>
                           <th scope="col">Date de Retour</th>
@@ -127,25 +126,31 @@
                         </tr>
                       </thead>
                       <tbody>
-
                           @foreach ($demandes as $demande )
-                          <tr>
-                              <td>{{ $demande->id }}</td>
-                              <td>
-                                  {{ $demande->user->nom }}
-                                  {{ $demande->user->prenom}}
-                              </td>
+                          <?php
+                            $url= "/demandes/voir/".$demande->id;
+                          ?>
+                          <tr class="table-tr" data-url="{{ $url }} ">
+                            <th scope="row">
+                                <div class="media align-items-center">
+                                  <a style='color:#000;' class="avatar rounded-circle mr-3">
+                                    {{ strtoupper($demande->user->prenom[0]) }}{{ strtoupper($demande->user->nom[0]) }}
+                                  </a>
+                                  <div class="media-body">
+                                    <span class="mb-0 text-sm">{{ $demande->user->prenom }} {{ $demande->user->nom }}</span>
+                                  </div>
+                                </div>
+                              </th>
+
                               <td>{{ $demande->dateDebut }}</td>
                               <td>{{ $demande->dateFin }}</td>
                               <td>{{ $demande->status }}</td>
                               <td>{{ $demande->typeDemande }}</td>
 
-
-
                               <td><a href="{{ route('afficherDemande', ['id' => $demande->id]) }}">Voir</a></td>
                           </tr>
                           @endforeach
-
+                         
                       </tbody>
                     </table>
                     <div class="card-footer py-4">
@@ -164,6 +169,6 @@
               </div>
             </div>
         </div>
-    </div>    
+      </div>    
     </div>
 @endsection

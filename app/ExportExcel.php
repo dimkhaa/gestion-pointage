@@ -22,7 +22,7 @@
 
         public function view(): View
         {  
-            return view('export', [
+            return view('pages/export', [
                 'users' => $this->repository->usersExportByDate($this->date_start, $this->date_end, 5)
             ]);
         }

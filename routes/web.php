@@ -11,15 +11,16 @@
 |
 */
 
-Route::get('/', 'Controller@index')->name('index');
+Route::get('/', 'TempsPresenceControlller@showAll')->name('index');
 Route::get('/temps-presences','TempsPresenceControlller@showAll')->name('temps-presences');
 Route::get('/temps-presences/filter','TempsPresenceControlller@filterByDate')->name('filterByDate.temps-presences');
 Route::get('/temps-presences/details/{id}','TempsPresenceControlller@getDetails')->name('temps-presences.details');
 Route::get('/temps-presences/search','TempsPresenceControlller@searchByName')->name('searchByName.temps-presences');
 Route::get('/temps-presences/details/filter/{id}','TempsPresenceControlller@filterByDateDP')->name('filterByDate.presences-details');
 Route::post('/temps-presences/export','TempsPresenceControlller@exportUsers')->name('temps-presences.export');
+Route::get('/profile', 'TempsPresenceControlller@showProfile')->name('profile');
 
-Route::get('/demandes', 'DemandesController@listDemandes');
+Route::get('/demandes', 'DemandesController@listDemandes')->name('demandes');
 
 Route::post('/demandes', 'DemandesController@sendDemande');
 
@@ -29,10 +30,7 @@ Route::get('/demandes/refuser', 'DemandesController@listDemandeRefuser');
 
 Route::get('/demandes/attente', 'DemandesController@listDemandeEnAttente');
 
-//Route pour afficher une demande
-//Route::get('/voir', 'DemandesController@afficherDemande');
-
-Route::get('/demandes/voir{id}', [
+Route::get('/demandes/voir/{id}', [
     'as'=> 'afficherDemande',
     'uses'=> 'DemandesController@afficherDemande'
 ]);
@@ -49,3 +47,6 @@ Route::get('/demandes/voir{id}/refuser', [
     'as' => 'refuserDemande',
     'uses'=> 'DemandesController@refuserDemande'
 ]);
+
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');

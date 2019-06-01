@@ -64,13 +64,6 @@ class DemandeRepository {
         //    $demandes->motif = $request['motif'];
           $demandes->save();
         //  //  return $demandes;
-
-
-
-
-
-
-
        }
 
        public function saveDemande(Demande $demandes){
@@ -87,18 +80,43 @@ class DemandeRepository {
 
        // demande approuver
        public function demandeApprouve(){
-        $demandes = Demande::where('status', '=', 1)->get();
+        $id_entrep=5;
+        $demandes= Demande::where('status', '=', 1)->
+        whereHas('user', function($q) use ($id_entrep)
+        {
+           $q->whereHas('service', function($q) use ($id_entrep)
+           {
+               $q->where("entreprise_id", $id_entrep);   
+           });
+        })->paginate(10);
         return $demandes;
+
        }
        //demande refuser
 
        public function demandeRefuser(){
-        $demandes = Demande::where('status', '=', -1)->get();
+        $id_entrep=5;
+        $demandes= Demande::where('status', '=', -1)->
+        whereHas('user', function($q) use ($id_entrep)
+        {
+           $q->whereHas('service', function($q) use ($id_entrep)
+           {
+               $q->where("entreprise_id", $id_entrep);   
+           });
+        })->paginate(10);
         return $demandes;
        }
        //demande en attente
        public function demandeEnAttente(){
-        $demandes = Demande::where('status', '=', 0)->get();
+        $id_entrep=5;
+        $demandes= Demande::where('status', '=', 0)->
+        whereHas('user', function($q) use ($id_entrep)
+        {
+           $q->whereHas('service', function($q) use ($id_entrep)
+           {
+               $q->where("entreprise_id", $id_entrep);   
+           });
+        })->paginate(10);
         return $demandes;
        }
 

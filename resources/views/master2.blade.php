@@ -46,20 +46,24 @@
       // Pour la page presences-details permettre 
       // de cliquer sur un salarie et voir ces infos
       $("tr.table-tr").each(function(){
-        var path=window.location.pathname; var lien=$(this).attr("data-url");
-        var pathTab=path.split('/'); var lienTab=lien.split('/');
-        var pathId=pathTab[3]; var p=lienTab[5];
-        var lienId='';
-        for(var i=0;p.length;i++){
-          if(p.charAt(i)!='?'){
-            lienId+=p.charAt(i);
+          var path=window.location.pathname;
+          console.log(path);
+          if(path!="/demandes"){
+          var lien=$(this).attr("data-url");
+          var pathTab=path.split('/'); var lienTab=lien.split('/');
+          var pathId=pathTab[3]; var p=lienTab[5];
+          var lienId='';
+          for(var i=0;p.length;i++){
+            if(p.charAt(i)!='?'){
+              lienId+=p.charAt(i);
+            }
+            if(p.charAt(i)=='?'){
+              break;
+            }
           }
-          if(p.charAt(i)=='?'){
-            break;
+          if(pathId===lienId){
+            $(this).addClass("trUserRacc");
           }
-        }
-        if(pathId===lienId){
-          $(this).addClass("trUserRacc");
         }
       });
 
@@ -72,25 +76,29 @@
       });
       $("tr.table-tr").on('mouseleave',function() {
         var path=window.location.pathname; var lien=$(this).attr("data-url");
-        var pathTab=path.split('/'); var lienTab=lien.split('/');
-        var pathId=pathTab[3]; var p=lienTab[5];
-        var lienId='';
-        for(var i=0;p.length;i++){
-          if(p.charAt(i)!='?'){
-            lienId+=p.charAt(i);
-          }
-          if(p.charAt(i)=='?'){
-            break;
-          }
-        }
-        if(pathId==lienId){
-          $(this).addClass("desactiveClick");
-          $(this).removeAttr('data-url');
-        }
-        if(pathId!=lienId){
+        if(path=="/demandes"){
           $(this).removeClass("trSurvoler");
-        }
-      }); 
+        }else{
+          var pathTab=path.split('/'); var lienTab=lien.split('/');
+          var pathId=pathTab[3]; var p=lienTab[5];
+          var lienId='';
+          for(var i=0;p.length;i++){
+            if(p.charAt(i)!='?'){
+              lienId+=p.charAt(i);
+            }
+            if(p.charAt(i)=='?'){
+              break;
+            }
+          }
+          if(pathId==lienId){
+            $(this).addClass("desactiveClick");
+            $(this).removeAttr('data-url');
+          }
+          if(pathId!=lienId){
+            $(this).removeClass("trSurvoler");
+          }
+        } 
+      });
     });
 </script>
 </body>

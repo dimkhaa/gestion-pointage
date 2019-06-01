@@ -90,7 +90,7 @@
         <!-- Navigation -->
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="./index.html">
+            <a class="nav-link" href="{{route('index')}}">
               <i class="ni ni-tv-2 text-primary"></i> Dashboard
             </a>
           </li>
@@ -101,8 +101,8 @@
           </li>
           <!-- Partie seydi mes demandes -->
           <li class="nav-item">
-            <a class="nav-link" href="/demandes">
-              <i class="ni ni-bullet-list-67 text-red"></i> Mes Demandes
+            <a class="nav-link" href="{{route('demandes')}}">
+              <i class="ni ni-chat-round text-blue"></i>Demandes
             </a>
           </li>
         </ul>

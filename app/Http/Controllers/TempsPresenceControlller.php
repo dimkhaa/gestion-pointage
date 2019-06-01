@@ -5,6 +5,7 @@
     use Request;
     use App\Repository\TempsPresencesRepository;
     use Illuminate\Support\Facades\Input;
+    use Illuminate\Support\Facades\Auth;
     use DateTime;
     use Excel;
     use PDF;
@@ -17,22 +18,25 @@
         private $repository;
         private $services;
         public function __construct(TempsPresencesRepository $repos){
+            $this->middleware('auth');
             $this->tolerance=900;
             $this->repository=$repos;
             $this->services=$this->repository->allService(5);
             setlocale( LC_ALL, 'en_US');
         }
+
         public function showAll(){
             $date_start = strftime("%d %b %Y",strtotime("-10 month"));
             $date_end = strftime("%d %b %Y",strtotime("0 month"));  
             $service="0";
-            return view('temps-presences', [
+            return view('pages/temps-presences', [
                 'users' => $this->repository
                 ->usersFilterByDate($date_start, $date_end,$service,5),
                 'date_start' =>$date_start,
                 'date_end'=>$date_end,
                 'date_end'=>$date_end,
                 'services'=>$this->services,
+                'userLogin'=>Auth::user(),
             ]);
         }
 
@@ -81,7 +85,7 @@
             }
 
             $heurePo=$heurTot - $heureSuppl;
-            return view('presences-details', [
+            return view('pages/presences-details', [
                 'user' => $user,
                 'users' => $this->repository
                 ->usersFilterByDate($date_start, $date_end, $service, 5),
@@ -92,6 +96,7 @@
                 'heureSuppl'=>$heureSuppl,
                 'heurePla'=>$heurePla,
                 'service_courant'=>$s,
+                'userLogin'=>Auth::user(),
                 ]);
         }
 
@@ -99,28 +104,28 @@
             $service = Request::get('service');
             $date_start = Request::get('date_start');
             $date_end = Request::get('date_end');
-                return view('temps-presences', [
+                return view('pages/temps-presences', [
                     'users' => $this->repository
                     ->usersFilterByDate($date_start, $date_end,$service,5),
                     'date_start' =>$date_start,
                     'date_end'=>$date_end,
                     'services'=>$this->services,
-                    'service_courant'=>$service
-                ]);
-         
-         
+                    'service_courant'=>$service,
+                    'userLogin'=>Auth::user(),
+                ]);         
         }
         public function searchByName(){
             $mc = Request::get('mc');
             $date_start = Request::get('date_start');
             $date_end = Request::get('date_end');
-            return view('temps-presences', [
+            return view('pages/temps-presences', [
                 'users' => $this->repository->
                            usersSearchByName($mc,$date_start,$date_end,5),
                 'mc' =>$mc,
                 'date_start' =>$date_start,
                 'date_end'=>$date_end,
                 'services'=>$this->services,
+                'userLogin'=>Auth::user(),
             ]);
         }
         public function filterByDateDP($id){
@@ -130,11 +135,12 @@
                 $date_start = date('Y-m-d',("+0 day"));
                 $date_end = date('Y-m-d',strtotime("-1 month"));   
             }
-            return view('presences-details', [
+            return view('pages/presences-details', [
                 'user' => $this->repository->getOne($id,5),
                 'date_start' =>$date_start,
                 'date_end'=>$date_end,
-                'users' => $this->repository->allUsers(5)
+                'users' => $this->repository->allUsers(5),
+                'userLogin'=>Auth::user(),
             ]);
         }
 
@@ -144,7 +150,7 @@
             $date_end=Input::post('date_end');
             if($type==="pdf"){
                 $users= $this->repository->usersExportByDate($date_start, $date_end, 5);
-                $pdf = PDF::loadView('generatePdf', compact('users'));
+                $pdf = PDF::loadView('pages/generatePdf', compact('users'));
                 return $pdf->download('liste_users_du_'.$date_start.'_au_'.$date_end.'.pdf');
             }else{
                 //return $this->viewExcel($date_start, $date_end);
@@ -153,4 +159,11 @@
                                                      'liste_users_du_'.$date_start.'_au_'.$date_end.'.xlsx');
             }            
         }
+
+        public function showProfile(){
+            return view('pages/profile', [
+                'userLogin'=>Auth::user(),
+            ]);;
+        }
+
     }

@@ -7,29 +7,33 @@
     <div class="row">
         <div class="col-xl-12 mb-5 mb-xl-0">
           <div class="card shadow">
-            <div class="card-header border-0">
-              <div class="row align-items-center">
-                <div class="card" style="width: 100%;">
-                    @if ($demande)
+            <div class="card-header"> 
+            @if ($demande)
 
-                  <div class="card-header">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                              <a class="nav-link" href="/demandes">
-                                <i class="ni ni-bold-left text-blue"></i>Retour
-                              </a>
-                            </li>
-                        </ul>
-                        <h1>Demande de congé </h1>
-                    </div>
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('demandes')}}">
+                          <i class="ni ni-bold-left text-blue"></i>Retour
+                        </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-4 text-right">
+                  <h3 class="mb-0">Demande de congé</h3>
+                  <span class="font-weight-light"> {{ $demande->created_at }}</span>
+                </div>
+              </div>
+              
+                 </div>
                     <div class="card-body">
                         <div class="row">
 
                         <div class="col-sm-6">
-                            <h3 class="card-title">Quand</h3>
-                            <label for="dateDebut">Le {{ $demande->created_at }}</label>
-                            <br>
-                            <label for="dateDebut">Le {{ $demande->dateDebut }} au {{ $demande->dateFin }}</label>
+                            <h3 class="card-title">Période</h3>                    
+                            Du  <span class="font-weight-light"> {{ $demande->dateDebut }} </span> <br>  
+                            Au <span class="font-weight-light"> {{ $demande->dateFin }} </span>
                             <hr>
                         </div>
 
@@ -100,7 +104,6 @@
                    @endif
               </div>
             </div>
-          </div>
         </div>
     </div>
 

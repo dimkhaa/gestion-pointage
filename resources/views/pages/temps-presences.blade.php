@@ -142,7 +142,6 @@
                             </td>
                             <td>
                               <span class="badge badge-dot mr-4">
-                                <i class="bg-warning"></i>
                                 <?php $heurTot = 0; $heurePo=0; $suppl = 0; ?>
                                 @foreach( $user->pointages as $pointage)
                                   @if($pointage->type==="arrivee")

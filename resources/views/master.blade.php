@@ -37,18 +37,12 @@
   <!-- Optional JS -->
   <script src="/js/vendor/chart.js/dist/Chart.min.js"></script>
   <script src="/js/vendor/chart.js/dist/Chart.extension.js"></script>
-<<<<<<< HEAD
-  <!-- Argon JS -->
-  <script src="/js/argon.js?v=1.0.0"></script>
-=======
   <!-- Datepicker -->
   <script src="/js/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-
   <!-- Argon JS -->
   <script src="/js/argon.js?v=1.0.0"></script>
 
 
->>>>>>> 6c4a08a1b8a4aa93faa2c3e3cd2dd3cd0d9b81da
 </body>
 
 </html>
