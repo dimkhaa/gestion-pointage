@@ -11,6 +11,6 @@ class PointageSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Pointage::class,30)->create();
+        factory(App\Pointage::class,40)->create();
     }
 }
